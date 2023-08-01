@@ -19,8 +19,8 @@ FoamFile
 
 // number of cells
 Nx   40;
-NRinner   2;
-NRouter   15;
+NRinner   11;
+NRouter   25;
 
 // size ratio of cell at the wall to the free-stream one in the near-wall blocks
 expRatWall   1; // for BL

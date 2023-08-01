@@ -24,22 +24,23 @@ ddtSchemes
 
 gradSchemes
 {
-    default         Gauss linear;
+    default         cellLimited Gauss linear 0.33;
 }
 
 divSchemes
 {
-    div(rhoPhi,U)    Gauss upwind;
-    div(rhoPhi,T)    Gauss upwind;
-    div(rhoPhi,K)    Gauss upwind;
-    div(phi,alpha)   Gauss vanLeer;
-    div(phirb,alpha) Gauss linear;//vanLeer;
-    //div(phi,k)       Gauss upwind;//change
-    div(phi,p)       Gauss upwind;
-    //div(phi,epsilon)       Gauss upwind;//change
-    div(rhoPhi,k)       Gauss upwind;
-    div(rhoPhi,epsilon) Gauss upwind;
-    div(rhoPhi,omega)   Gauss upwind;
+    default    Gauss upwind cellLimited Gauss linear 0.33;
+//    div(rhoPhi,U)    Gauss upwind;
+//    div(rhoPhi,T)    Gauss upwind;
+//    div(rhoPhi,K)    Gauss upwind;
+//    div(phi,alpha)   Gauss vanLeer;
+//    div(phirb,alpha) Gauss linear;//vanLeer;
+//    //div(phi,k)       Gauss upwind;//change
+//    div(phi,p)       Gauss upwind;
+//    //div(phi,epsilon)       Gauss upwind;//change
+//    div(rhoPhi,k)       Gauss upwind;
+//    div(rhoPhi,epsilon) Gauss upwind;
+//    div(rhoPhi,omega)   Gauss upwind;
     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
 }
 

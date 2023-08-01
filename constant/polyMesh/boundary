@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2206                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "constant/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+5
+(
+    inlet
+    {
+        type            patch;
+        nFaces          363;
+        startFace       294521;
+    }
+    heatedSurface
+    {
+        type            wall;
+        inGroups        1(wall);
+        nFaces          2343;
+        startFace       294884;
+    }
+    atmosphere
+    {
+        type            patch;
+        nFaces          3212;
+        startFace       297227;
+    }
+    symmetryVer
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          4800;
+        startFace       300439;
+        matchTolerance  0.0001;
+        transform       rotational;
+        neighbourPatch  symmetryHor;
+        rotationAxis    (1 0 0);
+        rotationCentre  (0 0 0);
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+    symmetryHor
+    {
+        type            cyclicAMI;
+        inGroups        1(cyclicAMI);
+        nFaces          4800;
+        startFace       305239;
+        matchTolerance  0.0001;
+        transform       rotational;
+        neighbourPatch  symmetryVer;
+        rotationAxis    (1 0 0);
+        rotationCentre  (0 0 0);
+        AMIMethod       faceAreaWeightAMI;
+        restartUncoveredSourceFace 1;
+    }
+)
+
+// ************************************************************************* //
