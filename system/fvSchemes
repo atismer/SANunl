@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default Euler; // steadyState, Euler, backward, CrankNicolson <coeff>
+    // Only Euler and CrankNicolson are supported for alpha, and sub-cycling is not supported with CrankNicolson.
+    // If CrankNicolson is used, nAlphaSubCycles in fvSolution should be set to 1.
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+divSchemes
+{
+    div(rhoPhi,U)    Gauss upwind;
+    div(rhoPhi,T)    Gauss upwind;
+    div(rhoPhi,K)    Gauss upwind;
+    div(phi,alpha)   Gauss vanLeer;
+    div(phirb,alpha) Gauss linear;//vanLeer;
+    //div(phi,k)       Gauss upwind;//change
+    div(phi,p)       Gauss upwind;
+    //div(phi,epsilon)       Gauss upwind;//change
+    div(rhoPhi,k)       Gauss upwind;
+    div(rhoPhi,epsilon) Gauss upwind;
+    div(rhoPhi,omega)   Gauss upwind;
+    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+}
+
+laplacianSchemes
+{
+    default Gauss linear corrected; // corrected
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default corrected; // corrected
+}
+
+
+wallDist
+{
+    method meshWave;
+}
+
+// ************************************************************************* //

@@ -1,0 +1,59 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  dev                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+|*---------------------------------------------------------------------------*|
+|* OpenFOAM for Windows 18.10 (v1)                                           *|
+|* Built by CFD Support, www.cfdsupport.com (based on Symscape).             *|
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [ 0 0 0 1 0 0 0 ];
+
+internalField   uniform 293;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 308;
+    }
+    heatedSurface
+    {
+        type            fixedGradient;
+		gradient		uniform 1e3;
+        value           uniform 293;
+    }
+
+    atmosphere
+    {
+        type            zeroGradient;
+        value           uniform 293;
+    }
+	
+    symmetryVer
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+	
+    symmetryHor
+    {
+        type            cyclicAMI;
+        value           $internalField;
+    }
+}
+
+
+// ************************************************************************* //
