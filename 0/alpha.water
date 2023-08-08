@@ -35,7 +35,7 @@ boundaryField
 
     atmosphere
     {
-        type            fixedValue;
+        type            zeroGradient;
         value           uniform 0;
     }
 	
