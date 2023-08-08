@@ -23,19 +23,19 @@ boundaryField
     inlet
     {
         type            fixedFluxPressure;
-        value           0.;//$internalField;
+        value           $internalField;
     }
 
     heatedSurface
     {
         type            fixedFluxPressure;
-        value           0.;//$internalField;
+        value           $internalField;
     }
 
     atmosphere
     {
         type            fixedValue;
-        value           $internalField;
+		value			$internalField;
     }
 	
     symmetryVer

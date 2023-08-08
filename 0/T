@@ -32,8 +32,8 @@ boundaryField
     heatedSurface
     {
         type            fixedGradient;
-		gradient		uniform 1e3;
-        value           uniform 293;
+		gradient		uniform 1e5;
+        value           uniform 450;
     }
 
     atmosphere
